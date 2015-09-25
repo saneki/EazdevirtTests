@@ -27,7 +27,7 @@ namespace EazvirtMe.Tests
 
 			// Call another virtualized method, from an instance of another type
 			// and with a param + return value
-			var instanceClass = new Test1_InstanceClass();
+			var instanceClass = new EazCall_Test1_InstanceClass();
 			Assert.AreEqual(instanceClass.Test1_Called_OtherClass(1234), "1234");
 		}
 
@@ -42,7 +42,7 @@ namespace EazvirtMe.Tests
 		}
 	}
 
-	class Test1_InstanceClass
+	class EazCall_Test1_InstanceClass
 	{
 		[Obfuscation(Feature = "virtualization", Exclude = false)]
 		public String Test1_Called_OtherClass(Int32 someParam)
