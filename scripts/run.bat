@@ -16,15 +16,20 @@ echo.
 
 echo [3.] Devirtualizing
 echo -------------------
-eazdevirt -d -o EazvirtMe-devirt.exe EazvirtMe-cleaned.exe
+eazdevirt -dj -o EazvirtMe-devirt.exe EazvirtMe-cleaned.exe
 echo.
 
-echo [4.] Testing (NUnit)
+echo [4.] Cleaning
+echo -------------
+de4dot -f EazvirtMe-devirt.exe -o EazvirtMe-fixed.exe
+echo.
+
+echo [5.] Testing (NUnit)
 echo --------------------
-nunit-console EazvirtMe-devirt.exe
+nunit-console EazvirtMe-fixed.exe
 echo.
 
-echo [5.] Checking (peverify)
+echo [6.] Checking (peverify)
 echo ------------------------
-peverify EazvirtMe-devirt.exe /IL /MD /VERBOSE
+peverify EazvirtMe-fixed.exe /IL /MD /VERBOSE
 echo.
