@@ -40,6 +40,22 @@ namespace EazvirtMe.Tests
 			// Same as prior, with null
 			Assert.IsNull(instance2.Method1<Object>(new Object(), "param2", 29));
 		}
+
+		[Test]
+		[Obfuscation(Feature = "virtualization", Exclude = false)]
+		public void Linq_Test1()
+		{
+			var list1 = new List<Int32>(new Int32[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+			var list2 = new List<Int32>(new Int32[] { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 });
+			// Call MethodSpec with parent TypeRef with return type IEnumerable<T>
+			var intersected = System.Linq.Enumerable.Intersect<Int32>(list1, list2);
+			Assert.IsNotNull(intersected);
+
+			var strings = new List<String>();
+			// Call MethodSpec with parent TypeRef with return type T[]
+			var stringsArr = System.Linq.Enumerable.ToArray<String>(strings);
+			Assert.IsNotNull(stringsArr);
+		}
 	}
 
 	class Method_MethodSpec_StaticClass
