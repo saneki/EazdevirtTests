@@ -28,7 +28,7 @@ namespace EazvirtMe.Tests
 		}
 	}
 
-	public class Field_Test1_Class
+	class Field_Test1_Class
 	{
 		public Int32 InstanceField1 = 908070;
 		public static String StaticField1 = "I'm a static field!";
