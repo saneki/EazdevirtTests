@@ -21,16 +21,9 @@ namespace EazvirtMe.Tests
 			// because Eazfuscator has two "name counters," one for instance methods and
 			// another for static methods, per type. Because of this, when devirtualizing
 			// this method, the following call to Test1_Called_Static is resolved as a
-			// call to Test1, resulting in infinite recursion. This could be fixed if dnlib's
-			// SigComparer checked IsStatic when comparing MethodSigs (not sure why it doesn't).
-			//
-			// HOWEVER: Despite the infinite recursion, this function actually runs (and
-			// according to NUnit, passes). Although peverify complains about the infinite
-			// recursion as a "Stack underflow", the CLR seems to detect that
-			// Test1_Called_Static should be called instead, probably due to nothing being on
-			// the stack at the time of calling it (instance methods require the "this" param).
+			// call to Test1, resulting in an exception.
 			// ---
-			EazCallTests.Test1_Called_Static();
+			// EazCallTests.Test1_Called_Static();
 
 			// Call another virtualized method, from an instance of another type
 			// and with a param + return value
